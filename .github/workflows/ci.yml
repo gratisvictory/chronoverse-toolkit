@@ -1,0 +1,46 @@
+name: CI
+
+on:
+    pull_request:
+        branches: [main]
+    push:
+        branches: [main]
+
+permissions:
+    contents: read
+
+jobs:
+    format:
+        name: Format
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: ./.github/actions/ci-setup
+            - name: Format
+              run: yarn format:check:all
+
+    sherif-lint:
+        name: Sherif-lint
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: ./.github/actions/ci-setup
+            - name: Lint Sherif
+              run: yarn lint:ws
+
+    ci-ok:
+        name: CI OK
+        runs-on: ubuntu-latest
+        if: always()
+        needs: [format, sherif-lint]
+        env:
+            FAILURE: ${{ contains(join(needs.*.result, ','), 'failure') }}
+        steps:
+            - name: Check for failure
+              run: |
+                  echo $FAILURE
+                  if [ "$FAILURE" = "false" ]; then
+                    exit 0
+                  else
+                    exit 1
+                  fi

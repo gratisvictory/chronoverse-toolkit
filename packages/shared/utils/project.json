@@ -1,0 +1,8 @@
+{
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "@chronoverse-shared/utils",
+  "projectType": "library",
+  "sourceRoot": "packages/shared/utils/src",
+  "tags": [],
+  "targets": {}
+}

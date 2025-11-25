@@ -5,9 +5,7 @@
     "target": "ESNext",
     "moduleResolution": "Bundler",
     "lib": [
-      "ESNext",
-      "DOM",
-      "DOM.Iterable"
+      "ESNext"
     ],
     "moduleDetection": "force",
     "verbatimModuleSyntax": true,

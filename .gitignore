@@ -31,6 +31,8 @@ lerna-debug.log*
 .nx/workspace-data/
 cursor/
 .cursor/
+claude/
+.claude/
 
 # ------------------------------------------------------
 # Build & Output

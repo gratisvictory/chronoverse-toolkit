@@ -1,3 +1,109 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Repository Overview
+
+Chronoverse Toolkit is an Nx-powered monorepo workspace using Yarn 4 as the package manager. The workspace is configured for TypeScript development with strict type checking and ESNext module resolution.
+
+## Development Environment
+
+- **Node Version**: 24.11.1 (see .nvmrc)
+- **Package Manager**: Yarn 4.12.0
+- **Build System**: Nx 22.1.1
+- **Nx Cloud**: Enabled (ID: 690cedc204fe72bfe84bb069)
+
+## Common Commands
+
+### Building
+
+```bash
+yarn build              # Build all projects via Nx
+nx run-many -t build    # Direct Nx command to build all
+```
+
+### Code Quality
+
+```bash
+# Formatting
+yarn format:check:all       # Check formatting with Prettier (used in CI)
+yarn format:fix:all         # Fix formatting issues
+yarn format:check:cache:all # Check with caching for faster local runs
+yarn format:fix:cache:all   # Fix with caching for faster local runs
+
+# Type Checking
+yarn check-types            # Run TypeScript type checking across all projects
+
+# Workspace Linting
+yarn lint:ws                # Lint workspace with Sherif (checks package dependencies, used in CI)
+```
+
+### Git Workflow
+
+The repository uses Husky hooks and Commitizen for enforcing commit conventions:
+
+- **pre-commit**: Runs lint-staged which formats changed files and runs workspace linting
+- **commit-msg**: Validates commit messages against conventional commit format using commitlint
+- **prepare-commit-msg**: Opens Commitizen interactive prompt for guided commit message creation
+- **Commitlint config**: Uses `@commitlint/config-conventional` and `@commitlint/config-nx-scopes` for Nx workspace-aware scoping
+
+When committing, Commitizen will guide you through creating conventional commits. Commit messages must follow the format: `type(scope): description`
+
+### CI/CD
+
+The CI pipeline (.github/workflows/ci.yml) runs:
+
+1. **Format check**: `yarn format:check:all`
+2. **Workspace linting**: `yarn lint:ws` (Sherif)
+
+Both checks must pass for CI to succeed.
+
+## Architecture
+
+### TypeScript Configuration
+
+The base TypeScript configuration (`tsconfig.base.json`) enforces extremely strict type checking:
+
+- **Module System**: ESNext with Bundler resolution
+- **Module Detection**: Forced with `verbatimModuleSyntax` and `isolatedModules`
+- **Strict Flags**: All standard strict options plus:
+    - `exactOptionalPropertyTypes` - exact type matching for optional properties
+    - `noUncheckedIndexedAccess` - array/index accesses return `T | undefined`
+    - `noUncheckedSideEffectImports` - imports must be used or explicitly marked as side-effect
+    - `noPropertyAccessFromIndexSignature` - require bracket notation for index signatures
+    - `noImplicitReturns`, `noImplicitOverride`
+    - `noUnusedLocals`, `noUnusedParameters`
+    - `noFallthroughCasesInSwitch`
+    - `allowUnreachableCode: false`, `allowUnusedLabels: false`
+
+These strict settings mean:
+
+- All array accesses must handle potential undefined values
+- Index signature properties must use bracket notation
+- Side-effect-only imports must be explicit
+
+### Code Style
+
+Prettier configuration with these key settings:
+
+- **Indentation**: Tabs (width: 4) for code files
+- **Quotes**: Single quotes for JS/TS, including JSX
+- **Line width**: 120 characters
+- **Trailing commas**: Always
+- **Arrow parens**: Avoid when possible
+- **End of line**: LF
+- **JSON override**: 2-space indentation (no tabs)
+- **Plugins**:
+    - `prettier-plugin-packagejson` - formats package.json files
+    - `prettier-plugin-sort-json` - sorts JSON files
+    - `prettier-plugin-multiline-arrays` - formats arrays
+
+### Workspace Structure
+
+- **Workspace pattern**: `packages/*` (currently empty, ready for packages)
+- **Monorepo approach**: Nx manages task orchestration and caching
+- **Package manager**: Yarn 4 workspaces with Plug'n'Play enabled (.yarnrc.yml)
+
 <!-- nx configuration start-->
 <!-- Leave the start & end comments to automatically receive updates. -->
 
@@ -9,14 +115,5 @@
 - When working in individual projects, use the `nx_project_details` mcp tool to analyze and understand the specific project structure and dependencies
 - For questions around nx configuration, best practices or if you're unsure, use the `nx_docs` tool to get relevant, up-to-date docs. Always use this instead of assuming things about nx configuration
 - If the user needs help with an Nx configuration or project graph error, use the `nx_workspace` tool to get any errors
-
-## CI Error Guidelines
-
-If the user wants help with fixing an error in their CI pipeline, use the following flow:
-
-- Retrieve the list of current CI Pipeline Executions (CIPEs) using the `nx_cloud_cipe_details` tool
-- If there are any errors, use the `nx_cloud_fix_cipe_failure` tool to retrieve the logs for a specific task
-- Use the task logs to see what's wrong and help the user fix their problem. Use the appropriate tools if necessary
-- Make sure that the problem is fixed by running the task that you passed into the `nx_cloud_fix_cipe_failure` tool
 
 <!-- nx configuration end-->

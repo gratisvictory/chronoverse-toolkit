@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "workspaces": [
-    "packages/*"
+    "packages/**/*"
   ],
   "scripts": {
     "build": "nx run-many -t build",

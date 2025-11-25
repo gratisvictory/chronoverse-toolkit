@@ -54,9 +54,10 @@ When committing, Commitizen will guide you through creating conventional commits
 The CI pipeline (.github/workflows/ci.yml) runs:
 
 1. **Format check**: `yarn format:check:all`
-2. **Workspace linting**: `yarn lint:ws` (Sherif)
+2. **Type checking**: `yarn check-types`
+3. **Workspace linting**: `yarn lint:ws` (Sherif)
 
-Both checks must pass for CI to succeed.
+All checks must pass for CI to succeed.
 
 ## Architecture
 
@@ -100,9 +101,53 @@ Prettier configuration with these key settings:
 
 ### Workspace Structure
 
-- **Workspace pattern**: `packages/*` (currently empty, ready for packages)
+- **Workspace pattern**: `packages/**/*` for nested package organization
 - **Monorepo approach**: Nx manages task orchestration and caching
 - **Package manager**: Yarn 4 workspaces with Plug'n'Play enabled (.yarnrc.yml)
+
+### Current Packages
+
+The workspace currently contains two packages under `packages/shared/`:
+
+#### @chronoverse-shared/flat
+
+ESLint flat config composition tool that provides a fluent API for building ESLint configurations.
+
+- **Location**: `packages/shared/flat`
+- **Purpose**: Tools for creating and modifying ESLint configurations in flat config format
+- **Build tool**: tsdown (bundles to `dist/index.mjs` with types in `dist/@types/`)
+- **Key features**: Config composer with operations (append, prepend, insert, replace, override, transform, remove)
+- **Tags**: `npm:public`, `npm:eslint`, `npm:shared`, `npm:utils`, `npm:flat`
+
+#### @chronoverse-shared/utils
+
+Shared utilities and constants for ESLint configuration.
+
+- **Location**: `packages/shared/utils`
+- **Purpose**: Common utilities, constants, and type definitions for ESLint tooling
+- **Build tool**: tsdown (bundles to `dist/index.mjs` with types in `dist/@types/`)
+- **Tags**: `npm:public`, `npm:eslint`, `npm:shared`, `npm:utils`, `npm:flat`
+
+### Package Development
+
+Each package follows a consistent structure:
+
+- **Build**: `yarn build` (or `nx build <package-name>`) - Runs `tsdown` bundler
+- **Type check**: `yarn check-types` - Validates TypeScript without emitting
+- **Clean**: `yarn clean` - Removes node_modules, `yarn clean:all` - Removes dist and node_modules
+- **TypeScript**: Uses project references pattern with `tsconfig.json` → `tsconfig.lib.json`
+- **Module format**: ESM-only (type: "module") with `.mjs` extensions
+- **Publishing**: Configured for public npm with `@chronoverse-shared` scope
+
+### Build System (tsdown)
+
+Packages use `tsdown` for building with these characteristics:
+
+- **Output format**: ESM (.mjs files)
+- **Declaration files**: Automatically moved to `dist/@types/` via build hooks
+- **Target**: ESNext with Node.js platform
+- **Sourcemaps**: Enabled for debugging
+- **Additional constraint**: `isolatedDeclarations: true` for faster DTS generation
 
 <!-- nx configuration start-->
 <!-- Leave the start & end comments to automatically receive updates. -->

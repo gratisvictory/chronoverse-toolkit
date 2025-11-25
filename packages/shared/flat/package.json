@@ -1,0 +1,60 @@
+{
+  "name": "@chronoverse-shared/flat",
+  "version": "0.0.0",
+  "description": "Tools for creating and modifying ESLint configurations in flat config format.",
+  "keywords": [
+    "eslint",
+    "shared",
+    "utils",
+    "flat"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gratisvictory/chronoverse-toolkit"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "gratisvictory",
+    "email": "gratisvictory@gmail.com",
+    "url": "https://github.com/gratisvictory"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "types": "./dist/@types/index.d.mts"
+    }
+  },
+  "main": "./dist/index.mjs",
+  "types": "./dist/@types/index.d.mts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "yarn build:clean && tsdown",
+    "build:clean": "rimraf dist",
+    "check-types": "tsc -p ./tsconfig.lib.json --noEmit",
+    "clean": "rimraf node_modules",
+    "clean:all": "rimraf dist node_modules",
+    "format:check": "prettier -c . --config ../../../prettier.config.js",
+    "format:check:cache": "prettier -c . --config ../../../prettier.config.js --cache --cache-location node_modules/.cache/.prettiercache",
+    "format:fix": "prettier -w . --config ../../../prettier.config.js --log-level=warn",
+    "format:fix:cache": "prettier -w . --config ../../../prettier.config.js --cache --cache-location node_modules/.cache/.prettiercache --log-level=warn"
+  },
+  "devDependencies": {
+    "@types/eslint": "^9.6.1",
+    "@types/node": "^24.10.1",
+    "es-toolkit": "^1.42.0",
+    "eslint": "^9.39.1",
+    "glob": "^13.0.0",
+    "prettier": "^3.6.2",
+    "rimraf": "^6.1.2",
+    "tsdown": "^0.16.7",
+    "typescript": "^5.9.3"
+  },
+  "packageManager": "yarn@4.12.0",
+  "publishConfig": {
+    "access": "public"
+  }
+}

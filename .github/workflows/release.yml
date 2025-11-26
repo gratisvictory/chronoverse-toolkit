@@ -22,6 +22,7 @@ permissions:
     contents: write
     pull-requests: write
     actions: read
+    id-token: write
 
 jobs:
     check-ci:
@@ -59,25 +60,58 @@ jobs:
               shell: bash
 
             - name: Release (First Release)
-              if: ${{ inputs.first-release }}
-              run: |
-                  if [ "${{ inputs.dry-run }}" = "true" ]; then
-                    yarn nx release --first-release --yes --dry-run ${{ inputs.version && format('--specifier={0}', inputs.version) || '' }}
-                  else
-                    yarn nx release --first-release --yes ${{ inputs.version && format('--specifier={0}', inputs.version) || '' }}
-                  fi
+              if: ${{ inputs.first-release && !inputs.dry-run }}
+              run: yarn nx release --first-release --skip-publish ${{ inputs.version && format('--specifier={0}', inputs.version) || '' }}
+              shell: bash
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Release (First Release - Dry Run)
+              if: ${{ inputs.first-release && inputs.dry-run }}
+              run: yarn nx release --first-release --skip-publish --dry-run ${{ inputs.version && format('--specifier={0}', inputs.version) || '' }}
               shell: bash
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Release (Normal)
-              if: ${{ !inputs.first-release }}
-              run: |
-                  if [ "${{ inputs.dry-run }}" = "true" ]; then
-                    yarn nx release --skip-publish --dry-run ${{ inputs.version && format('--specifier={0}', inputs.version) || '' }}
-                  else
-                    yarn nx release --skip-publish ${{ inputs.version && format('--specifier={0}', inputs.version) || '' }}
-                  fi
+              if: ${{ !inputs.first-release && !inputs.dry-run }}
+              run: yarn nx release --skip-publish ${{ inputs.version && format('--specifier={0}', inputs.version) || '' }}
               shell: bash
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Release (Normal - Dry Run)
+              if: ${{ !inputs.first-release && inputs.dry-run }}
+              run: yarn nx release --skip-publish --dry-run ${{ inputs.version && format('--specifier={0}', inputs.version) || '' }}
+              shell: bash
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Push tags to trigger publish workflow
+              if: ${{ !inputs.dry-run }}
+              run: |
+                  echo "Pushing tags to remote repository..."
+                  git push --follow-tags
+
+                  echo "Listing created tags..."
+                  git tag --list '@chronoverse-*'
+              shell: bash
+
+            - name: Wait for OTP Secret
+              if: ${{ !inputs.dry-run }}
+              id: wait-for-secrets
+              uses: step-security/wait-for-secrets@v1
+              with:
+                  secrets: |
+                      OTP:
+                        name: 'npm OTP'
+                        description: 'Enter your npm one-time password for publishing'
+
+            - name: Publish packages to npm
+              if: ${{ !inputs.dry-run }}
+              run: yarn nx release publish
+              shell: bash
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
+                  NPM_CONFIG_PROVENANCE: true
+                  NPM_CONFIG_OTP: ${{ steps.wait-for-secrets.outputs.OTP }}

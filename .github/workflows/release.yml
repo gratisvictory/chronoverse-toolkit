@@ -62,9 +62,9 @@ jobs:
               if: ${{ inputs.first-release }}
               run: |
                   if [ "${{ inputs.dry-run }}" = "true" ]; then
-                    yarn nx release --first-release --dry-run ${{ inputs.version && format('--specifier={0}', inputs.version) || '' }}
+                    yarn nx release --first-release --yes --dry-run ${{ inputs.version && format('--specifier={0}', inputs.version) || '' }}
                   else
-                    yarn nx release --first-release ${{ inputs.version && format('--specifier={0}', inputs.version) || '' }}
+                    yarn nx release --first-release --yes ${{ inputs.version && format('--specifier={0}', inputs.version) || '' }}
                   fi
               shell: bash
               env:

@@ -37,11 +37,20 @@ jobs:
             - name: Lint Sherif
               run: yarn lint:ws
 
+    build:
+        name: Build
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: ./.github/actions/ci-setup
+            - name: Build all packages
+              run: yarn build
+
     ci-ok:
         name: CI OK
         runs-on: ubuntu-latest
         if: always()
-        needs: [format, typecheck, sherif-lint]
+        needs: [format, typecheck, sherif-lint, build]
         env:
             FAILURE: ${{ contains(join(needs.*.result, ','), 'failure') }}
         steps:

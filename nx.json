@@ -1,5 +1,26 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "nxCloudId": "690cedc204fe72bfe84bb069",
-  "targetDefaults": {}
+  "release": {
+    "projects": ["packages/**/*"],
+    "projectsRelationship": "independent",
+    "changelog": {
+      "projectChangelogs": false,
+      "workspaceChangelog": {
+        "file": false,
+        "createRelease": "github"
+      }
+    },
+    "version": {
+      "conventionalCommits": true
+    }
+  },
+  "targetDefaults": {
+    "build": {
+      "cache": true
+    },
+    "nx-release-publish": {
+      "dependsOn": ["build"]
+    }
+  }
 }

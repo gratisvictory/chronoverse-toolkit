@@ -9,48 +9,85 @@ on:
 permissions:
     contents: read
 
+env:
+    NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+
 jobs:
     format:
         name: Format
         runs-on: ubuntu-latest
+        permissions:
+            contents: read
         steps:
             - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
             - uses: ./.github/actions/ci-setup
-            - name: Format
-              run: yarn format:check:all
+            - name: Derive appropriate SHAs for base and head for 'nx affected' commands
+              uses: nrwl/nx-set-shas@v4
+            - name: Format check (affected)
+              if: github.event_name == 'pull_request'
+              run: yarn nx affected -t format:check --parallel=3
+            - name: Format check (all)
+              if: github.event_name == 'push'
+              run: yarn nx run-many -t format:check --all --parallel=3
 
     typecheck:
         name: Typecheck
         runs-on: ubuntu-latest
+        permissions:
+            contents: read
         steps:
             - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
             - uses: ./.github/actions/ci-setup
-            - name: Lint Sherif
-              run: yarn check-types
+            - name: Derive appropriate SHAs for base and head for 'nx affected' commands
+              uses: nrwl/nx-set-shas@v4
+            - name: Type check (affected)
+              if: github.event_name == 'pull_request'
+              run: yarn nx affected -t check-types --parallel=3
+            - name: Type check (all)
+              if: github.event_name == 'push'
+              run: yarn nx run-many -t check-types --all --parallel=3
 
     sherif-lint:
         name: Sherif-lint
         runs-on: ubuntu-latest
+        permissions:
+            contents: read
         steps:
             - uses: actions/checkout@v4
             - uses: ./.github/actions/ci-setup
-            - name: Lint Sherif
+            - name: Lint workspace with Sherif
               run: yarn lint:ws
 
     build:
         name: Build
         runs-on: ubuntu-latest
+        permissions:
+            contents: read
         steps:
             - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
             - uses: ./.github/actions/ci-setup
-            - name: Build all packages
-              run: yarn build
+            - name: Derive appropriate SHAs for base and head for 'nx affected' commands
+              uses: nrwl/nx-set-shas@v4
+            - name: Build packages (affected)
+              if: github.event_name == 'pull_request'
+              run: yarn nx affected -t build --parallel=3
+            - name: Build packages (all)
+              if: github.event_name == 'push'
+              run: yarn nx run-many -t build --all --parallel=3
 
     ci-ok:
         name: CI OK
         runs-on: ubuntu-latest
         if: always()
         needs: [format, typecheck, sherif-lint, build]
+        permissions:
+            contents: read
         env:
             FAILURE: ${{ contains(join(needs.*.result, ','), 'failure') }}
         steps:

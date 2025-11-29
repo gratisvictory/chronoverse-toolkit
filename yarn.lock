@@ -1270,9 +1270,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chronoverse-shared/flat@workspace:packages/shared/flat":
+"@chronoverse-toolkit/flat@workspace:packages/shared/flat":
   version: 0.0.0-use.local
-  resolution: "@chronoverse-shared/flat@workspace:packages/shared/flat"
+  resolution: "@chronoverse-toolkit/flat@workspace:packages/shared/flat"
   dependencies:
     "@types/eslint": "npm:^9.6.1"
     "@types/node": "npm:^24.10.1"
@@ -1286,9 +1286,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@chronoverse-shared/utils@workspace:packages/shared/utils":
+"@chronoverse-toolkit/utils@workspace:packages/shared/utils":
   version: 0.0.0-use.local
-  resolution: "@chronoverse-shared/utils@workspace:packages/shared/utils"
+  resolution: "@chronoverse-toolkit/utils@workspace:packages/shared/utils"
   dependencies:
     "@types/node": "npm:^24.10.1"
     es-toolkit: "npm:^1.42.0"
@@ -1684,29 +1684,6 @@ __metadata:
   checksum: 10c0/51600f78b798f172a9915dffb295e2ffb44840d583427bc732baf12ecb963eb841b253300e657da91d890f4b323d10a1bd12934bf293e3018d8bb66fdce5217b
   languageName: node
   linkType: hard
-
-"@gratisvictory/chronoverse-toolkit@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "@gratisvictory/chronoverse-toolkit@workspace:."
-  dependencies:
-    "@commitlint/cli": "npm:^20.1.0"
-    "@commitlint/config-conventional": "npm:^20.0.0"
-    "@commitlint/config-nx-scopes": "npm:^20.0.0"
-    "@commitlint/cz-commitlint": "npm:^20.1.0"
-    "@nx/js": "npm:^22.1.2"
-    "@types/node": "npm:^24.10.1"
-    commitizen: "npm:^4.3.1"
-    husky: "npm:^9.1.7"
-    inquirer: "npm:^13.0.1"
-    lint-staged: "npm:^16.2.7"
-    nx: "npm:22.1.2"
-    prettier: "npm:^3.6.2"
-    prettier-plugin-multiline-arrays: "npm:^4.0.3"
-    prettier-plugin-packagejson: "npm:^2.5.19"
-    prettier-plugin-sort-json: "npm:^4.1.1"
-    typescript: "npm:^5.9.3"
-  languageName: unknown
-  linkType: soft
 
 "@humanfs/core@npm:^0.19.1":
   version: 0.19.1
@@ -2957,6 +2934,29 @@ __metadata:
   checksum: 10c0/a58b9df05bb452f7d105d9e7229ac82fa873741c0c40ddcc7bb82f8a909fbe3f7814c9ebe9bc9a2bef9b737c0ec6e2d699d179048ef06ad3ec46315df0ebe6ad
   languageName: node
   linkType: hard
+
+"chronoverse-toolkit@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "chronoverse-toolkit@workspace:."
+  dependencies:
+    "@commitlint/cli": "npm:^20.1.0"
+    "@commitlint/config-conventional": "npm:^20.0.0"
+    "@commitlint/config-nx-scopes": "npm:^20.0.0"
+    "@commitlint/cz-commitlint": "npm:^20.1.0"
+    "@nx/js": "npm:^22.1.2"
+    "@types/node": "npm:^24.10.1"
+    commitizen: "npm:^4.3.1"
+    husky: "npm:^9.1.7"
+    inquirer: "npm:^13.0.1"
+    lint-staged: "npm:^16.2.7"
+    nx: "npm:22.1.2"
+    prettier: "npm:^3.6.2"
+    prettier-plugin-multiline-arrays: "npm:^4.0.3"
+    prettier-plugin-packagejson: "npm:^2.5.19"
+    prettier-plugin-sort-json: "npm:^4.1.1"
+    typescript: "npm:^5.9.3"
+  languageName: unknown
+  linkType: soft
 
 "cli-cursor@npm:3.1.0, cli-cursor@npm:^3.1.0":
   version: 3.1.0

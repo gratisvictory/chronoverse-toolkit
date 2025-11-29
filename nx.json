@@ -19,6 +19,12 @@
     "build": {
       "cache": true
     },
+    "check-types": {
+      "cache": true
+    },
+    "format:check": {
+      "cache": true
+    },
     "nx-release-publish": {
       "dependsOn": ["build"]
     }

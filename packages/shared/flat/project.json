@@ -1,6 +1,6 @@
 {
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "name": "@chronoverse-shared/flat",
+  "name": "@chronoverse-toolkit/flat",
   "projectType": "library",
   "sourceRoot": "packages/shared/flat/src",
   "tags": [],

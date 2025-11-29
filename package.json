@@ -1,5 +1,5 @@
 {
-  "name": "@gratisvictory/chronoverse-toolkit",
+  "name": "chronoverse-toolkit",
   "private": true,
   "type": "module",
   "workspaces": [

@@ -7,13 +7,15 @@ on:
     workflow_dispatch:
         inputs:
             tag:
-                description: 'Tag to publish (e.g., @chronoverse-shared/flat@1.0.0)'
+                description: 'Tag to publish (e.g., @chronoverse-toolkit/flat@1.0.0)'
                 required: true
                 type: string
 
 permissions:
-    contents: read
     id-token: write
+    contents: read
+    pull-requests: write
+    packages: write
 
 env:
     NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
@@ -91,5 +93,5 @@ jobs:
             - name: Publish packages to npm
               run: yarn nx release publish --projects=${{ needs.verify-release.outputs.package }} --otp ${{ steps.wait-for-secrets.outputs.OTP }}
               env:
-                  NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
+                  NPM_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
                   NPM_CONFIG_PROVENANCE: true

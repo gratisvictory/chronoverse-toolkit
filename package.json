@@ -19,23 +19,20 @@
     "lint:ws": "yarn dlx sherif@latest",
     "prepare": "husky"
   },
-  "config": {
-    "commitizen": {
-      "path": "@commitlint/cz-commitlint"
-    }
-  },
   "devDependencies": {
-    "@commitlint/cli": "^20.1.0",
-    "@commitlint/config-conventional": "^20.0.0",
-    "@commitlint/config-nx-scopes": "^20.0.0",
-    "@commitlint/cz-commitlint": "^20.1.0",
-    "@nx/js": "^22.1.2",
-    "@types/node": "^24.10.1",
+    "@commitlint/cli": "^20.2.0",
+    "@commitlint/config-conventional": "^20.2.0",
+    "@commitlint/config-nx-scopes": "^20.2.0",
+    "@commitlint/cz-commitlint": "^20.2.0",
+    "@commitlint/types": "^20.2.0",
+    "@nx/js": "^22.2.3",
+    "@types/node": "^24.10.3",
     "commitizen": "^4.3.1",
+    "conventional-changelog-conventionalcommits": "^9.1.0",
+    "es-toolkit": "^1.42.0",
     "husky": "^9.1.7",
-    "inquirer": "^13.0.1",
-    "lint-staged": "^16.2.7",
-    "nx": "22.1.2",
+    "inquirer": "^13.0.2",
+    "nx": "22.2.3",
     "prettier": "^3.6.2",
     "prettier-plugin-multiline-arrays": "^4.0.3",
     "prettier-plugin-packagejson": "^2.5.19",

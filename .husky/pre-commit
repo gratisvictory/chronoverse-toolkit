@@ -1,1 +1,4 @@
-yarn lint-staged
+yarn format:fix:all
+yarn check-types
+yarn build
+yarn lint:ws

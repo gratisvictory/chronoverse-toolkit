@@ -20,6 +20,7 @@
     "prepare": "husky"
   },
   "devDependencies": {
+    "@chronoverse-toolkit/commitlint": "workspace:^",
     "@commitlint/cli": "^20.2.0",
     "@commitlint/config-conventional": "^20.2.0",
     "@commitlint/config-nx-scopes": "^20.2.0",
@@ -29,9 +30,9 @@
     "@types/node": "^24.10.3",
     "commitizen": "^4.3.1",
     "conventional-changelog-conventionalcommits": "^9.1.0",
-    "es-toolkit": "^1.42.0",
+    "es-toolkit": "^1.43.0",
     "husky": "^9.1.7",
-    "inquirer": "^13.0.2",
+    "inquirer": "^13.1.0",
     "nx": "22.2.3",
     "prettier": "^3.6.2",
     "prettier-plugin-multiline-arrays": "^4.0.3",

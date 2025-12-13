@@ -1,0 +1,8 @@
+{
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "@chronoverse-toolkit/commitlint",
+  "projectType": "library",
+  "sourceRoot": "packages/shared/commitlint/src",
+  "tags": [],
+  "targets": {}
+}

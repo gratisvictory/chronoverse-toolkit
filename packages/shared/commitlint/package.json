@@ -1,12 +1,13 @@
 {
-  "name": "@chronoverse-toolkit/utils",
+  "name": "@chronoverse-toolkit/commitlint",
   "version": "0.0.1",
-  "description": "Tools for creating and modifying ESLint configurations in flat config format.",
+  "description": "Fully typed commitlint configuration for Nx monorepos with emoji support and custom scope resolution.",
   "keywords": [
-    "eslint",
-    "shared",
-    "utils",
-    "flat"
+    "commitlint",
+    "nx",
+    "monorepo",
+    "conventional-commits",
+    "typescript"
   ],
   "repository": {
     "type": "git",
@@ -42,13 +43,20 @@
     "format:fix": "prettier -w . --config ../../../prettier.config.js --log-level=warn",
     "format:fix:cache": "prettier -w . --config ../../../prettier.config.js --cache --cache-location node_modules/.cache/.prettiercache --log-level=warn"
   },
+  "dependencies": {
+    "@commitlint/cli": "^20.2.0",
+    "@commitlint/config-conventional": "^20.2.0",
+    "@commitlint/cz-commitlint": "^20.2.0",
+    "@nx/devkit": "^22.2.3",
+    "commitizen": "^4.3.1",
+    "conventional-changelog-conventionalcommits": "^9.1.0",
+    "inquirer": "^13.1.0"
+  },
   "devDependencies": {
+    "@commitlint/types": "^20.2.0",
     "@types/node": "^24.10.3",
     "es-toolkit": "^1.43.0",
-    "eslint": "^9.39.1",
-    "eslint-config-flat-gitignore": "^2.1.0",
     "glob": "^13.0.0",
-    "globals": "^16.5.0",
     "prettier": "^3.6.2",
     "rimraf": "^6.1.2",
     "tsdown": "^0.17.3",

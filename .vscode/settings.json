@@ -15,5 +15,4 @@
   "editor.formatOnSave": true,
   "files.autoSave": "onFocusChange",
   "prettier.enable": true,
-  "prettier.requireConfig": true
 }

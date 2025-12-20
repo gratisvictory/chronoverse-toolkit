@@ -11,9 +11,7 @@
     "isolatedModules": true,
 
     "target": "ESNext",
-    "lib": [
-      "ESNext"
-    ],
+    "lib": ["ESNext"],
 
     "strict": true,
     "strictNullChecks": true,

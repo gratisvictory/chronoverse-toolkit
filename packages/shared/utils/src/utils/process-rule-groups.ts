@@ -17,7 +17,10 @@ const processRuleGroups = <T extends Linter.RuleEntry = Linter.RuleEntry>(
 			if (sourcePlugin?.rules) {
 				const pluginRules: Record<string, any> = {};
 
-				for (const [name, ruleConfig] of Object.entries(rules)) {
+				for (const [
+					name,
+					ruleConfig,
+				] of Object.entries(rules)) {
 					if (isNotNil(ruleConfig) && sourcePlugin.rules[name]) {
 						pluginRules[name] = sourcePlugin.rules[name];
 					}
@@ -40,7 +43,10 @@ const processRuleGroups = <T extends Linter.RuleEntry = Linter.RuleEntry>(
 
 	for (const { pluginId, groupName, rules } of groups) {
 		const prefix = `${pluginId}/${groupName}`;
-		for (const [name, ruleConfig] of Object.entries(rules)) {
+		for (const [
+			name,
+			ruleConfig,
+		] of Object.entries(rules)) {
 			if (isNotNil(ruleConfig)) {
 				configRules[`${prefix}/${name}`] = ruleConfig;
 			}

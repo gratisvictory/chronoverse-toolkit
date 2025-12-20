@@ -23,7 +23,8 @@
       "cache": true
     },
     "format:check": {
-      "cache": true
+      "cache": true,
+      "dependsOn": ["^build"]
     },
     "nx-release-publish": {
       "dependsOn": ["build"]

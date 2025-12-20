@@ -20,6 +20,17 @@ interface INxScopesConfig {
 	 * @default ['workspace']
 	 */
 	customScopes?: readonly string[];
+
+	/**
+	 * Trim scoped package prefix from project names
+	 * If true, transforms "@scope/package-name" to "package-name"
+	 * @default false
+	 * @example
+	 * // With trimProjectPrefix: true
+	 * "@chronoverse-toolkit/commitlint" → "commitlint"
+	 * "commitlint" → "commitlint"
+	 */
+	trimProjectPrefix?: boolean;
 }
 
 export type { INxProjectFilter, INxScopesConfig };

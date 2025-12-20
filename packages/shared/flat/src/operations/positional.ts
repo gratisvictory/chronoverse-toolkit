@@ -13,7 +13,10 @@ const createAppendOperation = <T extends TEslintConfig>(items: TResolvableConfig
 	items,
 	executor: async configs => {
 		const resolved = await resolveConfigs(items);
-		return [...configs, ...resolved];
+		return [
+			...configs,
+			...resolved,
+		];
 	},
 });
 
@@ -22,7 +25,10 @@ const createPrependOperation = <T extends TEslintConfig>(items: TResolvableConfi
 	items,
 	executor: async configs => {
 		const resolved = await resolveConfigs(items);
-		return [...resolved, ...configs];
+		return [
+			...resolved,
+			...configs,
+		];
 	},
 });
 

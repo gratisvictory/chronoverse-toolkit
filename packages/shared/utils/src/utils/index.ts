@@ -5,3 +5,4 @@ export * from './get-overrides';
 export * from './process-rule-groups';
 export * from './register-groups-as-plugins';
 export * from './resolve-sub-options';
+export * from './interop-default';

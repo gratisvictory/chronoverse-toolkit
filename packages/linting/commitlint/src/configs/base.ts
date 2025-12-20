@@ -1,12 +1,13 @@
 import { merge } from 'es-toolkit';
 import type { ICommitlintConfigOptions, TCommitlintConfig } from '../@types';
-import { createEmojiParser } from '../parsers';
+import { createEmojiParser, createEmojiEnum } from '../parsers';
 import { createNxScopesRule } from '../scopes';
 
 const createBaseCommitlintConfig = async (options: ICommitlintConfigOptions = {}): Promise<TCommitlintConfig> => {
 	const { nxScopes, emoji, rules: customRules } = options;
 
 	const parserPreset = await createEmojiParser(emoji);
+	const emojiEnum = createEmojiEnum(emoji?.customEmojis);
 
 	const baseConfig: TCommitlintConfig = {
 		extends: ['@commitlint/config-conventional'],
@@ -15,6 +16,7 @@ const createBaseCommitlintConfig = async (options: ICommitlintConfigOptions = {}
 			questions: {
 				type: {
 					emojiInHeader: emoji?.enabled ?? true,
+					enum: emojiEnum,
 				},
 			},
 		},

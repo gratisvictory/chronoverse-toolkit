@@ -37,20 +37,20 @@
     "check-types": "tsc -p ./tsconfig.lib.json --noEmit",
     "clean": "rimraf node_modules",
     "clean:all": "rimraf dist node_modules",
-    "format:check": "prettier -c . --config ../../../prettier.config.js",
-    "format:check:cache": "prettier -c . --config ../../../prettier.config.js --cache --cache-location node_modules/.cache/.prettiercache",
-    "format:fix": "prettier -w . --config ../../../prettier.config.js --log-level=warn",
-    "format:fix:cache": "prettier -w . --config ../../../prettier.config.js --cache --cache-location node_modules/.cache/.prettiercache --log-level=warn"
+    "format:check": "prettier -c . --config ../../../prettier.config.ts",
+    "format:check:cache": "prettier -c . --config ../../../prettier.config.ts --cache --cache-location node_modules/.cache/.prettiercache",
+    "format:fix": "prettier -w . --config ../../../prettier.config.ts --log-level=warn",
+    "format:fix:cache": "prettier -w . --config ../../../prettier.config.ts --cache --cache-location node_modules/.cache/.prettiercache --log-level=warn"
   },
   "devDependencies": {
     "@types/eslint": "^9.6.1",
-    "@types/node": "^24.10.3",
+    "@types/node": "^24.10.4",
     "es-toolkit": "^1.43.0",
-    "eslint": "^9.39.1",
+    "eslint": "^9.39.2",
     "glob": "^13.0.0",
-    "prettier": "^3.6.2",
+    "prettier": "^3.7.4",
     "rimraf": "^6.1.2",
-    "tsdown": "^0.17.3",
+    "tsdown": "^0.18.1",
     "typescript": "^5.9.3"
   },
   "packageManager": "yarn@4.12.0",

@@ -86,3 +86,4 @@ vendor/
 .changeset/
 *.md.backup
 LICENSE
+.czrc

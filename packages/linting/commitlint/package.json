@@ -1,13 +1,13 @@
 {
   "name": "@chronoverse-toolkit/commitlint",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "Fully typed commitlint configuration for Nx monorepos with emoji support and custom scope resolution.",
   "keywords": [
-    "commitlint",
-    "nx",
-    "monorepo",
-    "conventional-commits",
-    "typescript"
+    "chronoverse:commitlint",
+    "chronoverse:nx",
+    "chronoverse:monorepo",
+    "chronoverse:conventional-commits",
+    "chronoverse:typescript"
   ],
   "repository": {
     "type": "git",
@@ -38,28 +38,28 @@
     "check-types": "tsc -p ./tsconfig.lib.json --noEmit",
     "clean": "rimraf node_modules",
     "clean:all": "rimraf dist node_modules",
-    "format:check": "prettier -c . --config ../../../prettier.config.js",
-    "format:check:cache": "prettier -c . --config ../../../prettier.config.js --cache --cache-location node_modules/.cache/.prettiercache",
-    "format:fix": "prettier -w . --config ../../../prettier.config.js --log-level=warn",
-    "format:fix:cache": "prettier -w . --config ../../../prettier.config.js --cache --cache-location node_modules/.cache/.prettiercache --log-level=warn"
+    "format:check": "prettier -c . --config ../../../prettier.config.ts",
+    "format:check:cache": "prettier -c . --config ../../../prettier.config.ts --cache --cache-location node_modules/.cache/.prettiercache",
+    "format:fix": "prettier -w . --config ../../../prettier.config.ts --log-level=warn",
+    "format:fix:cache": "prettier -w . --config ../../../prettier.config.ts --cache --cache-location node_modules/.cache/.prettiercache --log-level=warn"
   },
   "dependencies": {
     "@commitlint/cli": "^20.2.0",
     "@commitlint/config-conventional": "^20.2.0",
     "@commitlint/cz-commitlint": "^20.2.0",
-    "@nx/devkit": "^22.2.3",
+    "@nx/devkit": "^22.3.3",
     "commitizen": "^4.3.1",
     "conventional-changelog-conventionalcommits": "^9.1.0",
     "inquirer": "^13.1.0"
   },
   "devDependencies": {
     "@commitlint/types": "^20.2.0",
-    "@types/node": "^24.10.3",
+    "@types/node": "^24.10.4",
     "es-toolkit": "^1.43.0",
     "glob": "^13.0.0",
-    "prettier": "^3.6.2",
+    "prettier": "^3.7.4",
     "rimraf": "^6.1.2",
-    "tsdown": "^0.17.3",
+    "tsdown": "^0.18.1",
     "typescript": "^5.9.3"
   },
   "packageManager": "yarn@4.12.0",

@@ -13,7 +13,10 @@ const mergeConfigs = <T extends TEslintConfig>(target: T, source: Partial<T>): T
 		}
 
 		if (Array.isArray(sourceValue) && Array.isArray(targetValue)) {
-			result[key] = [...targetValue, ...sourceValue] as any;
+			result[key] = [
+				...targetValue,
+				...sourceValue,
+			] as any;
 			continue;
 		}
 

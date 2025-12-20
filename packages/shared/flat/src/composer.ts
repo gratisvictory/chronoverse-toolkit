@@ -1,4 +1,4 @@
-import type { TComposer, TComposerState, TConfigOperation, TEslintConfig, TResolvableConfig } from './@types';
+import type { IComposer, IComposerState, TConfigOperation, TEslintConfig, TResolvableConfig } from './@types';
 import {
 	createAppendOperation,
 	createInsertAfterOperation,
@@ -13,8 +13,8 @@ import {
 } from './operations';
 import { isNil } from 'es-toolkit';
 
-const composer = <T extends TEslintConfig = TEslintConfig>(...initialConfigs: TResolvableConfig<T>[]): TComposer<T> => {
-	const state: TComposerState<T> = {
+const composer = <T extends TEslintConfig = TEslintConfig>(...initialConfigs: TResolvableConfig<T>[]): IComposer<T> => {
+	const state: IComposerState<T> = {
 		operations: [],
 		operationsOverride: [],
 		operationsResolved: [],
@@ -94,7 +94,7 @@ const composer = <T extends TEslintConfig = TEslintConfig>(...initialConfigs: TR
 		state[phase].push(operation);
 	};
 
-	const api: TComposer<T> = {
+	const api: IComposer<T> = {
 		append: (...items) => {
 			addOperation(createAppendOperation(items));
 			return api;

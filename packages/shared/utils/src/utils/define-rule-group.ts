@@ -1,12 +1,12 @@
 import type { Linter } from 'eslint';
-import type { TRuleGroup } from '../@types';
+import type { IRuleGroup } from '../@types';
 
 const defineRuleGroup = <T extends Linter.RuleEntry = Linter.RuleEntry>({
 	pluginId,
 	groupName,
 	rules,
 	sourcePlugin,
-}: TRuleGroup<T>): TRuleGroup<T> => ({
+}: IRuleGroup<T>): IRuleGroup<T> => ({
 	pluginId,
 	groupName,
 	sourcePlugin,

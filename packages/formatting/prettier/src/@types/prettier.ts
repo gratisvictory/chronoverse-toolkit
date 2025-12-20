@@ -11,12 +11,12 @@ type TPluginName =
 	| 'prettier-plugin-multiline-arrays'
 	| 'prettier-plugin-tailwindcss';
 
-type TPluginOptionsMap = {
+interface IPluginOptionsMap {
 	'prettier-plugin-sort-json': SortJsonOptions;
 	'prettier-plugin-multiline-arrays': MultilineArrayOptions;
 	'prettier-plugin-tailwindcss': TailwindcssPluginOptions;
 	'prettier-plugin-packagejson': object;
-};
+}
 
 type TUnionToIntersection<U> = (U extends unknown ? (k: U) => void : never) extends (k: infer I) => void ? I : never;
 
@@ -27,7 +27,7 @@ type TAvailablePlugins<TDisabled extends readonly TPluginName[] | undefined> = T
 type TPluginOptionsForEnabled<TDisabled extends readonly TPluginName[] | undefined> = TUnionToIntersection<
 	TAvailablePlugins<TDisabled> extends infer TEnabled
 		? TEnabled extends TPluginName
-			? TPluginOptionsMap[TEnabled]
+			? IPluginOptionsMap[TEnabled]
 			: never
 		: never
 >;

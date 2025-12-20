@@ -130,3 +130,4 @@ certificates/
 *.bak
 *.backup
 *~
+typegen.d.ts

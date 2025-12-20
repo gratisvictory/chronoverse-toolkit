@@ -1,7 +1,7 @@
-import type { TEslintConfig, TResolvableConfig, TChronoverse, TChronoverseCallback, TComposer } from './@types';
+import type { TEslintConfig, TResolvableConfig, TChronoverse, TChronoverseCallback, IComposer } from './@types';
 import { composer } from './composer';
 
-type TChronoverseInput<T extends TEslintConfig = TEslintConfig> = TResolvableConfig<T> | TComposer<T>;
+type TChronoverseInput<T extends TEslintConfig = TEslintConfig> = TResolvableConfig<T> | IComposer<T>;
 
 const chronoverse = <T extends TEslintConfig = TEslintConfig>(
 	...args: TChronoverseInput<T>[] | [TChronoverseCallback<T>]
@@ -24,7 +24,7 @@ const resolveComposers = <T extends TEslintConfig = TEslintConfig>(
 ): TResolvableConfig<T>[] =>
 	inputs.map(input => {
 		if (input && typeof input === 'object' && 'toConfigs' in input) {
-			return (input as TComposer<T>).toConfigs();
+			return (input as IComposer<T>).toConfigs();
 		}
 		return input as TResolvableConfig<T>;
 	});

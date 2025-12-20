@@ -2,29 +2,29 @@ import type { Awaitable } from './shared';
 import type { TConfigOperation } from './operation';
 import type { TConfigTarget, TEslintConfig, TResolvableConfig } from './config';
 
-type TComposer<T extends TEslintConfig = TEslintConfig> = {
-	append(...items: TResolvableConfig<T>[]): TComposer<T>;
-	prepend(...items: TResolvableConfig<T>[]): TComposer<T>;
-	insertBefore(target: TConfigTarget, ...items: TResolvableConfig<T>[]): TComposer<T>;
-	insertAfter(target: TConfigTarget, ...items: TResolvableConfig<T>[]): TComposer<T>;
+interface IComposer<T extends TEslintConfig = TEslintConfig> {
+	append(...items: TResolvableConfig<T>[]): IComposer<T>;
+	prepend(...items: TResolvableConfig<T>[]): IComposer<T>;
+	insertBefore(target: TConfigTarget, ...items: TResolvableConfig<T>[]): IComposer<T>;
+	insertAfter(target: TConfigTarget, ...items: TResolvableConfig<T>[]): IComposer<T>;
 
-	override(target: TConfigTarget, config: T | ((config: T) => Awaitable<T>)): TComposer<T>;
-	overrides(overrides: Partial<Record<TConfigTarget, T | ((config: T) => Awaitable<T>)>>): TComposer<T>;
-	replace(target: TConfigTarget, ...items: TResolvableConfig<T>[]): TComposer<T>;
+	override(target: TConfigTarget, config: T | ((config: T) => Awaitable<T>)): IComposer<T>;
+	overrides(overrides: Partial<Record<TConfigTarget, T | ((config: T) => Awaitable<T>)>>): IComposer<T>;
+	replace(target: TConfigTarget, ...items: TResolvableConfig<T>[]): IComposer<T>;
 
-	remove(target: TConfigTarget): TComposer<T>;
-	removeRules(...rules: string[]): TComposer<T>;
-	removePlugins(...plugins: string[]): TComposer<T>;
+	remove(target: TConfigTarget): IComposer<T>;
+	removeRules(...rules: string[]): IComposer<T>;
+	removePlugins(...plugins: string[]): IComposer<T>;
 
-	overrideRules(rules: Record<string, any>): TComposer<T>;
+	overrideRules(rules: Record<string, any>): IComposer<T>;
 
-	renamePlugins(renames: Record<string, string>): TComposer<T>;
+	renamePlugins(renames: Record<string, string>): IComposer<T>;
 
-	transform(fn: (configs: T[]) => Awaitable<T[]>): TComposer<T>;
+	transform(fn: (configs: T[]) => Awaitable<T[]>): IComposer<T>;
 
-	onResolved(callback: (configs: T[]) => Awaitable<T[] | void>): TComposer<T>;
+	onResolved(callback: (configs: T[]) => Awaitable<T[] | void>): IComposer<T>;
 
-	clone(): TComposer<T>;
+	clone(): IComposer<T>;
 	toConfigs(): Promise<T[]>;
 
 	then<TResult1 = T[], TResult2 = never>(
@@ -35,21 +35,21 @@ type TComposer<T extends TEslintConfig = TEslintConfig> = {
 		onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | null,
 	): Promise<T[] | TResult>;
 	finally(onfinally?: (() => void) | null): Promise<T[]>;
-};
+}
 
-type TComposerState<T extends TEslintConfig = TEslintConfig> = {
+interface IComposerState<T extends TEslintConfig = TEslintConfig> {
 	operations: TConfigOperation<T>[];
 	operationsOverride: TConfigOperation<T>[];
 	operationsResolved: ((configs: T[]) => Awaitable<T[] | void>)[];
 	renames: Record<string, string>;
-};
+}
 
-type TChronoverse<T extends TEslintConfig = TEslintConfig> = TComposer<T>;
+type TChronoverse<T extends TEslintConfig = TEslintConfig> = IComposer<T>;
 
-type TChronoverseInput<T extends TEslintConfig = TEslintConfig> = TResolvableConfig<T> | TComposer<T>;
+type TChronoverseInput<T extends TEslintConfig = TEslintConfig> = TResolvableConfig<T> | IComposer<T>;
 
 type TChronoverseCallback<T extends TEslintConfig = TEslintConfig> = (
-	composerFn: (...configs: TChronoverseInput<T>[]) => TComposer<T>,
-) => TComposer<T>;
+	composerFn: (...configs: TChronoverseInput<T>[]) => IComposer<T>,
+) => IComposer<T>;
 
-export type { TComposer, TComposerState, TChronoverse, TChronoverseCallback, TChronoverseInput };
+export type { IComposer, IComposerState, TChronoverse, TChronoverseCallback, TChronoverseInput };

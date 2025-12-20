@@ -1,11 +1,11 @@
 import { isNotNil } from 'es-toolkit';
 import type { ESLint, Linter } from 'eslint';
-import type { TRuleGroup, TRules } from '../@types';
+import type { IRuleGroup, TRules } from '../@types';
 
 type TProcessMode = 'rules' | 'plugins';
 
 const processRuleGroups = <T extends Linter.RuleEntry = Linter.RuleEntry>(
-	groups: TRuleGroup<T>[],
+	groups: IRuleGroup<T>[],
 	mode: TProcessMode = 'rules',
 ): TRules<T> | Record<string, ESLint.Plugin> => {
 	if (mode === 'plugins') {

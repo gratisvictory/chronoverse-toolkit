@@ -22,7 +22,7 @@ const EXCLUDE_PATTERNS: string[] = [
 
 	'benchmark/{fixtures,tmp}/**',
 
-	'**/*.{config,jest.config}.{js,cjs,mjs}',
+	'**/*.{config,jest.config}.{js,cjs,mjs,ts,tsx}',
 	'**/auto-import?(s).d.ts',
 	'**/components.d.ts',
 	'**/exports-unused.ts',

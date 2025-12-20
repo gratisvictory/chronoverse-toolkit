@@ -41,7 +41,11 @@
     "format:check": "prettier -c . --config ../../../prettier.config.ts",
     "format:check:cache": "prettier -c . --config ../../../prettier.config.ts --cache --cache-location node_modules/.cache/.prettiercache",
     "format:fix": "prettier -w . --config ../../../prettier.config.ts --log-level=warn",
-    "format:fix:cache": "prettier -w . --config ../../../prettier.config.ts --cache --cache-location node_modules/.cache/.prettiercache --log-level=warn"
+    "format:fix:cache": "prettier -w . --config ../../../prettier.config.ts --cache --cache-location node_modules/.cache/.prettiercache --log-level=warn",
+    "lint:check": "eslint -c ../../../eslint.config.ts",
+    "lint:check:cache": "eslint -c ../../../eslint.config.js --cache --cache-location=node_modules/.cache/.eslintcache",
+    "lint:fix": "eslint -c ../../../eslint.config.js --fix",
+    "lint:fix:cache": "eslint -c ../../../eslint.config.js --cache --cache-location=node_modules/.cache/.eslintcache"
   },
   "dependencies": {
     "local-pkg": "^1.1.2",
@@ -53,7 +57,9 @@
   },
   "devDependencies": {
     "@types/node": "^24.10.4",
+    "eslint": "^9.39.2",
     "glob": "^13.0.0",
+    "jiti": "^2.6.1",
     "rimraf": "^6.1.2",
     "tsdown": "^0.18.1",
     "typescript": "^5.9.3"

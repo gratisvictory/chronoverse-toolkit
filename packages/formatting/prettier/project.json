@@ -1,0 +1,14 @@
+{
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "@chronoverse-toolkit/prettier",
+  "projectType": "library",
+  "sourceRoot": "packages/formatting/prettier/src",
+  "tags": [
+    "chronoverse:public",
+    "chronoverse:prettier",
+    "chronoverse:formatting",
+    "chronoverse:code-quality",
+    "chronoverse:typescript"
+  ],
+  "targets": {}
+}

@@ -54,7 +54,8 @@
     "@nx/devkit": "^22.3.3",
     "commitizen": "^4.3.1",
     "conventional-changelog-conventionalcommits": "^9.1.0",
-    "inquirer": "^13.1.0"
+    "inquirer": "^13.1.0",
+    "type-fest": "^5.3.1"
   },
   "devDependencies": {
     "@commitlint/types": "^20.2.0",

@@ -1,5 +1,6 @@
 import { createProjectGraphAsync, type ProjectGraph } from '@nx/devkit';
-import { isNil } from 'es-toolkit';
+import { RuleConfigSeverity } from '@commitlint/types';
+import { isNil, last, uniq } from 'es-toolkit';
 import type { INxProjectFilter, INxScopesConfig, TScopeEnumRule } from '../@types';
 
 let projectGraphCache: ProjectGraph | null = null;
@@ -12,8 +13,10 @@ const getProjectGraph = async (): Promise<ProjectGraph> => {
 };
 
 const trimScopedPackageName = (name: string): string => {
-	const isScopedPackage = name.startsWith('@');
-	return isScopedPackage ? (name.split('/')[1] ?? name) : name;
+	if (!name.startsWith('@')) return name;
+
+	const parts = name.split('/');
+	return last(parts) ?? name;
 };
 
 const extractProjectNames = (nodes: ProjectGraph['nodes'], filter?: INxProjectFilter): string[] => {
@@ -44,10 +47,8 @@ const getNxProjects = async (
 	}
 };
 
-const mergeScopes = (customScopes: Readonly<string[]>, nxProjects: Readonly<string[]>): string[] => [
-	...customScopes,
-	...nxProjects,
-];
+const mergeScopes = (customScopes: Readonly<string[]>, nxProjects: Readonly<string[]>): string[] =>
+	uniq([...customScopes, ...nxProjects]);
 
 const createNxScopesRule =
 	(config?: INxScopesConfig): TScopeEnumRule =>
@@ -57,7 +58,7 @@ const createNxScopesRule =
 		const nxProjects = await getNxProjects(filter, trimProjectPrefix);
 		const allScopes = mergeScopes(customScopes, nxProjects);
 
-		return [2, 'always', allScopes] as const;
+		return [RuleConfigSeverity.Error, 'always', allScopes] as const;
 	};
 
 const clearProjectGraphCache = (): void => {

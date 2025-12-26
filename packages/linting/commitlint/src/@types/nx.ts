@@ -19,7 +19,7 @@ interface INxScopesConfig {
 	 * Additional custom scopes to include beyond Nx project names
 	 * @default ['workspace']
 	 */
-	customScopes?: readonly string[];
+	customScopes?: Readonly<string[]>;
 
 	/**
 	 * Trim scoped package prefix from project names

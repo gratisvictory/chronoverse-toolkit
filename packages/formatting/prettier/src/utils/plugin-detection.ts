@@ -1,17 +1,6 @@
 import { isPackageExists } from 'local-pkg';
 import type { TPluginName } from '../@types';
-
-interface IPluginDetectionConfig {
-	packageName: string;
-	pluginName: TPluginName;
-}
-
-const OPTIONAL_PLUGINS: IPluginDetectionConfig[] = [
-	{
-		packageName: 'tailwindcss',
-		pluginName: 'prettier-plugin-tailwindcss',
-	},
-];
+import { OPTIONAL_PLUGINS } from '../constants';
 
 const detectOptionalPlugins = (): TPluginName[] => {
 	const detectedPlugins: TPluginName[] = [];
@@ -20,8 +9,8 @@ const detectOptionalPlugins = (): TPluginName[] => {
 		try {
 			const exists = isPackageExists(packageName);
 			if (exists) detectedPlugins.push(pluginName);
-		} catch (error) {
-			console.log(`Failed to detect package "${packageName}":`, error);
+		} catch (error: unknown) {
+			console.error(`❌ Failed to detect package "${packageName}":`, error);
 		}
 	}
 

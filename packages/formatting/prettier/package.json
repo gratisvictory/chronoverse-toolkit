@@ -1,17 +1,30 @@
 {
   "name": "@chronoverse-toolkit/prettier",
   "version": "0.0.0",
-  "description": "Prettier configuration for chronoverse projects.",
+  "description": "Opinionated Prettier configuration for Chronoverse projects with automatic plugin detection and type-safe configuration.",
   "keywords": [
-    "chronoverse:public",
     "chronoverse:prettier",
+    "chronoverse:prettier-config",
     "chronoverse:formatting",
+    "chronoverse:code-quality",
     "chronoverse:typescript",
-    "chronoverse:code-quality"
+    "chronoverse:prettier-plugin",
+    "chronoverse:monorepo",
+    "chronoverse:config",
+    "chronoverse:code-style"
   ],
+  "homepage": "https://github.com/gratisvictory/chronoverse-toolkit/tree/main/packages/formatting/prettier#readme",
+  "bugs": {
+    "url": "https://github.com/gratisvictory/chronoverse-toolkit/issues"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gratisvictory/chronoverse-toolkit"
+    "url": "https://github.com/gratisvictory/chronoverse-toolkit",
+    "directory": "packages/formatting/prettier"
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/gratisvictory"
   },
   "license": "MIT",
   "author": {
@@ -53,10 +66,14 @@
     "prettier-plugin-multiline-arrays": "^4.1.3",
     "prettier-plugin-packagejson": "^2.5.20",
     "prettier-plugin-sort-json": "^4.1.1",
-    "prettier-plugin-tailwindcss": "^0.7.2"
+    "prettier-plugin-tailwindcss": "^0.7.2",
+    "type-fest": "^5.3.1"
   },
   "devDependencies": {
+    "@chronoverse-toolkit/types": "workspace:^",
+    "@chronoverse-toolkit/utils": "workspace:^",
     "@types/node": "^24.10.4",
+    "es-toolkit": "^1.43.0",
     "eslint": "^9.39.2",
     "glob": "^13.0.0",
     "jiti": "^2.6.1",

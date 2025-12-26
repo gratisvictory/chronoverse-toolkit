@@ -4,11 +4,24 @@
   "projectType": "library",
   "sourceRoot": "packages/formatting/prettier/src",
   "tags": [
-    "chronoverse:public",
     "chronoverse:prettier",
+    "chronoverse:prettier-config",
     "chronoverse:formatting",
     "chronoverse:code-quality",
-    "chronoverse:typescript"
+    "chronoverse:typescript",
+    "chronoverse:prettier-plugin",
+    "chronoverse:monorepo",
+    "chronoverse:config",
+    "chronoverse:code-style"
   ],
-  "targets": {}
+  "targets": {
+    "build": {
+      "dependsOn": [
+        {
+          "projects": "@chronoverse-toolkit/types",
+          "target": "build"
+        }
+      ]
+    }
+  }
 }

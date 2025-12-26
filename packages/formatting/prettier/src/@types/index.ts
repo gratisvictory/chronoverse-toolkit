@@ -1,1 +1,2 @@
-export * from './prettier';
+export * from './config';
+export * from './shared';

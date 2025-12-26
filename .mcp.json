@@ -1,12 +1,6 @@
 {
   "mcpServers": {
-    "nx-mcp": {
-      "type": "stdio",
-      "command": "npx",
-      "args": [
-        "nx",
-        "mcp"
-      ]
-    }
+    "nx-mcp": { "type": "stdio", "command": "npx", "args": ["nx", "mcp"] },
+    "eslint": { "command": "npx", "args": ["@eslint/mcp@latest"] }
   }
 }

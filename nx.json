@@ -24,7 +24,11 @@
     },
     "format:check": {
       "cache": true,
-      "dependsOn": ["^build"]
+      "dependsOn": ["build"]
+    },
+    "lint:check": {
+      "cache": true,
+      "dependsOn": ["build"]
     },
     "nx-release-publish": {
       "dependsOn": ["build"]

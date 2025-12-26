@@ -1,2 +1,3 @@
-import { prettier } from '@chronoverse-toolkit/prettier';
-export default prettier();
+import { prettier, type TPrettierConfig } from '@chronoverse-toolkit/prettier';
+
+export default prettier() satisfies TPrettierConfig;

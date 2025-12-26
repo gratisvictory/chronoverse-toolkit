@@ -90,14 +90,14 @@ The base TypeScript configuration (`tsconfig.base.json`) enforces extremely stri
 - **Module System**: ESNext with Bundler resolution
 - **Module Detection**: Forced with `verbatimModuleSyntax` and `isolatedModules`
 - **Strict Flags**: All standard strict options plus:
-    - `exactOptionalPropertyTypes` - exact type matching for optional properties
-    - `noUncheckedIndexedAccess` - array/index accesses return `T | undefined`
-    - `noUncheckedSideEffectImports` - imports must be used or explicitly marked as side-effect
-    - `noPropertyAccessFromIndexSignature` - require bracket notation for index signatures
-    - `noImplicitReturns`, `noImplicitOverride`
-    - `noUnusedLocals`, `noUnusedParameters`
-    - `noFallthroughCasesInSwitch`
-    - `allowUnreachableCode: false`, `allowUnusedLabels: false`
+  - `exactOptionalPropertyTypes` - exact type matching for optional properties
+  - `noUncheckedIndexedAccess` - array/index accesses return `T | undefined`
+  - `noUncheckedSideEffectImports` - imports must be used or explicitly marked as side-effect
+  - `noPropertyAccessFromIndexSignature` - require bracket notation for index signatures
+  - `noImplicitReturns`, `noImplicitOverride`
+  - `noUnusedLocals`, `noUnusedParameters`
+  - `noFallthroughCasesInSwitch`
+  - `allowUnreachableCode: false`, `allowUnusedLabels: false`
 
 These strict settings mean:
 
@@ -118,9 +118,9 @@ Prettier configuration with these key settings:
 - **JSON override**: 2-space indentation (no tabs)
 - **Multiline arrays**: Wraps arrays with 3+ elements (via `multilineArraysWrapThreshold`)
 - **Plugins**:
-    - `prettier-plugin-packagejson` - formats package.json files
-    - `prettier-plugin-sort-json` - sorts JSON files
-    - `prettier-plugin-multiline-arrays` - formats arrays
+  - `prettier-plugin-packagejson` - formats package.json files
+  - `prettier-plugin-sort-json` - sorts JSON files
+  - `prettier-plugin-multiline-arrays` - formats arrays
 
 #### Critical Coding Conventions (from docs/rules/stylistic/)
 
@@ -136,10 +136,10 @@ These rules are **mandatory** and apply to all TypeScript, JavaScript, JSX, and 
 - **Monorepo approach**: Nx manages task orchestration and caching
 - **Package manager**: Yarn 4 workspaces with Plug'n'Play enabled (.yarnrc.yml)
 - **Release strategy**: Independent versioning for all packages under `packages/**/*`
-    - Uses conventional commits for version bumping
-    - GitHub releases created automatically (no workspace changelog file)
-    - Per-project changelogs disabled
-    - Publishing depends on successful build
+  - Uses conventional commits for version bumping
+  - GitHub releases created automatically (no workspace changelog file)
+  - Per-project changelogs disabled
+  - Publishing depends on successful build
 
 ### Current Packages
 
@@ -147,7 +147,7 @@ The workspace is organized into domain-specific directories under `packages/`:
 
 #### Linting (`packages/linting/`)
 
-**@chronoverse-toolkit/commitlint**
+##### **@chronoverse-toolkit/commitlint**
 
 - **Location**: `packages/linting/commitlint`
 - **Purpose**: Fully typed commitlint configuration for Nx monorepos with emoji support and custom scope resolution
@@ -156,7 +156,7 @@ The workspace is organized into domain-specific directories under `packages/`:
 
 #### Formatting (`packages/formatting/`)
 
-**@chronoverse-toolkit/prettier**
+##### **@chronoverse-toolkit/prettier**
 
 - **Location**: `packages/formatting/prettier`
 - **Purpose**: Prettier configuration for chronoverse projects
@@ -165,19 +165,19 @@ The workspace is organized into domain-specific directories under `packages/`:
 
 #### Shared (`packages/shared/`)
 
-**@chronoverse-toolkit/flat**
+##### **@chronoverse-toolkit/flat**
 
 - **Location**: `packages/shared/flat`
 - **Purpose**: ESLint flat config composition tool with fluent API
 - **Key features**: Config composer with operations (append, prepend, insert, replace, override, transform, remove)
 
-**@chronoverse-toolkit/utils**
+##### **@chronoverse-toolkit/utils**
 
 - **Location**: `packages/shared/utils`
 - **Purpose**: Common utilities and constants for ESLint tooling
 - **Key features**: Shared utility functions, interop helpers
 
-**@chronoverse-toolkit/types**
+##### **@chronoverse-toolkit/types**
 
 - **Location**: `packages/shared/types`
 - **Purpose**: Shared TypeScript type definitions

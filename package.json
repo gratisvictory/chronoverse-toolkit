@@ -30,7 +30,8 @@
   },
   "devDependencies": {
     "@chronoverse-toolkit/commitlint": "workspace:^",
-    "@chronoverse-toolkit/eslint-typescript": "workspace:^",
+    "@chronoverse-toolkit/eslint-js": "workspace:^",
+    "@chronoverse-toolkit/eslint-ts": "workspace:^",
     "@chronoverse-toolkit/flat": "workspace:^",
     "@chronoverse-toolkit/prettier": "workspace:^",
     "@nx/js": "^22.3.3",

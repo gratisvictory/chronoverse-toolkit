@@ -1,5 +1,5 @@
 {
-  "name": "@chronoverse-toolkit/eslint-typescript",
+  "name": "@chronoverse-toolkit/eslint-ts",
   "version": "0.0.0",
   "description": "Fully typed commitlint configuration for Nx monorepos with emoji support and custom scope resolution.",
   "keywords": [
@@ -58,6 +58,7 @@
     "typescript-eslint": "^8.50.0"
   },
   "devDependencies": {
+    "@chronoverse-toolkit/types": "workspace:^",
     "@types/node": "^24.10.4",
     "es-toolkit": "^1.43.0",
     "eslint-typegen": "^2.3.0",

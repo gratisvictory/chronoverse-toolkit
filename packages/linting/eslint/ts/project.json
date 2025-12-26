@@ -1,8 +1,8 @@
 {
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "name": "@chronoverse-toolkit/eslint-typescript",
+  "name": "@chronoverse-toolkit/eslint-ts",
   "projectType": "library",
-  "sourceRoot": "packages/linting/eslint/typescript/src",
+  "sourceRoot": "packages/linting/eslint/ts/src",
   "tags": [
     "chronoverse:public",
     "chronoverse:eslint",
@@ -20,6 +20,10 @@
         {
           "projects": "@chronoverse-toolkit/utils",
           "target": "build"
+        },
+        {
+          "projects": "@chronoverse-toolkit/types",
+          "target": "build"
         }
       ]
     },
@@ -34,12 +38,15 @@
           "target": "build"
         },
         {
+          "projects": "@chronoverse-toolkit/types",
+          "target": "build"
+        },
+        {
           "target": "types:gen"
         }
       ]
     },
     "types:gen": {
-      "executor": "nx:run-commands",
       "dependsOn": [
         {
           "projects": "@chronoverse-toolkit/flat",
@@ -48,12 +55,12 @@
         {
           "projects": "@chronoverse-toolkit/utils",
           "target": "build"
+        },
+        {
+          "projects": "@chronoverse-toolkit/types",
+          "target": "build"
         }
-      ],
-      "options": {
-        "command": "tsx scripts/typegen.ts",
-        "cwd": "packages/linting/eslint/typescript"
-      }
+      ]
     }
   }
 }

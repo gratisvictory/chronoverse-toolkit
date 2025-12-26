@@ -14,7 +14,7 @@
   },
   "extends": "../../../../tsconfig.base.json",
   "files": [],
-  "include": [],
+  "include": ["scripts/**/*.ts"],
   "references": [
     {
       "path": "./tsconfig.lib.json"

@@ -1,11 +1,11 @@
 import fs from 'node:fs/promises';
 import { flatConfigsToRulesDTS } from 'eslint-typegen/core';
-import { typescript } from '../src/chronoverse';
+import { ts } from '../src/chronoverse';
 
 const generateTypegen = async () => {
 	console.log('🔧 Generating typegen...');
 
-	const composer = typescript({
+	const composer = ts({
 		consistent: true,
 		safe: true,
 	});

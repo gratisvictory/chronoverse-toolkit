@@ -22,17 +22,15 @@
   "type": "module",
   "exports": {
     ".": {
-      "types": "./dist/@types/index.d.mts",
-      "import": "./dist/index.mjs"
+      "types": "./dist/index.d.ts"
     }
   },
-  "main": "./dist/index.mjs",
-  "types": "./dist/@types/index.d.mts",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "yarn build:clean && tsdown",
+    "build": "yarn build:clean && tsc -p ./tsconfig.lib.json",
     "build:clean": "rimraf dist",
     "check-types": "tsc -p ./tsconfig.lib.json --noEmit",
     "clean": "rimraf node_modules",

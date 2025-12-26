@@ -2,11 +2,10 @@
   "compilerOptions": {
     "outDir": "./dist",
     "declaration": true,
-    "declarationDir": "./dist/@types",
-    "declarationMap": true,
-
+    "emitDeclarationOnly": true,
+    "declarationMap": false,
+    "composite": false,
     "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
-
     "types": ["node"]
   },
   "extends": "./tsconfig.json",

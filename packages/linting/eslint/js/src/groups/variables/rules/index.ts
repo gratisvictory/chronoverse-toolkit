@@ -1,0 +1,1 @@
+export { variablesRules } from './variables';

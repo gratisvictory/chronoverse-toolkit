@@ -1,0 +1,1 @@
+export { errorsRules } from './errors';

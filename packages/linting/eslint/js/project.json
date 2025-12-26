@@ -1,0 +1,54 @@
+{
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "name": "@chronoverse-toolkit/eslint-js",
+  "projectType": "library",
+  "sourceRoot": "packages/linting/eslint/js/src",
+  "tags": [
+    "chronoverse:public",
+    "chronoverse:eslint",
+    "chronoverse:nx",
+    "chronoverse:monorepo",
+    "chronoverse:typescript"
+  ],
+  "targets": {
+    "build": {
+      "dependsOn": [
+        {
+          "projects": "@chronoverse-toolkit/flat",
+          "target": "build"
+        },
+        {
+          "projects": "@chronoverse-toolkit/utils",
+          "target": "build"
+        }
+      ]
+    },
+    "check-types": {
+      "dependsOn": [
+        {
+          "projects": "@chronoverse-toolkit/flat",
+          "target": "build"
+        },
+        {
+          "projects": "@chronoverse-toolkit/utils",
+          "target": "build"
+        },
+        {
+          "target": "types:gen"
+        }
+      ]
+    },
+    "types:gen": {
+      "dependsOn": [
+        {
+          "projects": "@chronoverse-toolkit/flat",
+          "target": "build"
+        },
+        {
+          "projects": "@chronoverse-toolkit/utils",
+          "target": "build"
+        }
+      ]
+    }
+  }
+}

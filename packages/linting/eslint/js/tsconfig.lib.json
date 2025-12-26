@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "declaration": true,
+    "declarationDir": "./dist/@types",
+    "declarationMap": true,
+    "composite": true,
+
+    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
+
+    "types": ["node"]
+  },
+  "extends": "./tsconfig.json",
+  "include": ["src/**/*.ts"]
+}
